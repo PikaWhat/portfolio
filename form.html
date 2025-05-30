@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles/Style.css">
+    <title>Form</title>
+</head>
+<body>
+    <main>
+        <h1>Contact us</h1>
+        <article>
+            <h1>You want to visit Berlin?</h1>
+            <p>Please give us your personal information so we can contact you for affordable offers to visit!</p>
+            
+            <ul>
+                <li>Personal Info</li>
+                <li>When do you want to visit</li>
+                <li>What is your favorite place?</li>
+                <li>How did you hear about us?</li>
+                <li>Rate us</li>
+                <li>Your message to us</li>
+            </ul>
+
+            <h2 id="form-header">Form</h2>
+            <form action="index.html" method="get" aria-labelledby="form-header">
+                <fieldset>
+                    <legend>Personal Info</legend>
+                    <label for="fn">Full Name</label>
+                    <input id="fn" type="text" name="fn" placeholder="John Doe">
+                    <br>
+                    <label for="gd">Date of Birth</label>
+                    <input id="gd" type="date" name="gd">
+                    <br>
+                    <label for="an">Address</label>
+                    <input id="an" type="text" name="an" placeholder="Address" pattern="[A-Z][a-z]" aria-label="Letters">
+                    <br>
+                    <label for="zip">Zip Code</label>
+                    <input id="zip" type="number" name="ZipCode" placeholder="12345" min="10115" max="14199" aria-label="Range">
+                    <br>
+                    <label for="email">E-mail</label>
+                    <input type="text" name="email" placeholder="example@domain.com" pattern="[A-Z][a-z]+@+\.{1-999999}">
+                </fieldset>
+
+                <fieldset>
+                    <legend>When are you going to visit Berlin?</legend>
+                    <label for="date">Enter Date</label>
+                    <input id="date" type="date" name="visitDate">
+                </fieldset>
+
+                <fieldset>
+                    <legend>What is your favorite place in Berlin?</legend>
+                    <label for="place">Places:</label>
+                    <input list="places" name="place" id="place" placeholder="Type or select a place" required>
+                    <datalist id="places">
+                        <option value="Mitte">
+                        <option value="Friedrichshain-Kreuzberg">
+                        <option value="Pankow">
+                        <option value="Charlottenburg-Wilmersdorf">
+                        <option value="Spandau">
+                        <option value="Steglitz-Zehlendorf">
+                        <option value="Tempelhof-Schöneberg">
+                        <option value="Neukölln">
+                        <option value="Treptow-Köpenick">
+                        <option value="Marzahn-Hellersdorf">
+                        <option value="Lichtenberg">
+                        <option value="Reinickendorf">
+                    </datalist>
+                </fieldset>
+
+                <fieldset>
+                    <legend>How did you hear about us?</legend>
+                    <label for="ads">Advertisement</label>
+                    <input type="radio" id="ads" name="hear_about" value="advertisement" required>
+                    <label for="social_media">Social Media</label>
+                    <input type="radio" id="social_media" name="hear_about" value="social_media" required>
+                    <label for="friend">Friend</label>
+                    <input type="radio" id="friend" name="hear_about" value="friend" required>
+                    <label for="other">Other</label>
+                    <input type="radio" id="other" name="hear_about" value="other" required>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Rate us</legend>
+                    <label for="rating">Rating (1 = Poor, 5 = Excellent):</label>
+                    <select id="rating" name="rating" required>
+                        <option value="1">1 - Poor</option>
+                        <option value="2">2 - Fair</option>
+                        <option value="3">3 - Good</option>
+                        <option value="4">4 - Very Good</option>
+                        <option value="5">5 - Excellent</option>
+                    </select>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Your Message</legend>
+                    <label for="message">Please leave us a message:</label>
+                    <textarea id="message" name="message" rows="4" cols="30" placeholder="Write your message here" required></textarea>
+                </fieldset>
+
+                <button type="submit">Submit</button>
+                <button type="reset">Reset</button>
+            </form>
+        </article>
+    </main>
+    <button><a href="HTML.html" target="_self">'Homepage</a></button>
+</body>
+</html>
