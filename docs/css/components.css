@@ -1,0 +1,1301 @@
+/* Buttons */
+.btn{
+  display:inline-block; background:var(--tiamo-olive); color:#fff;
+  padding:.50rem 1.15rem; border-radius: 60px; text-decoration:none; font-weight:600;
+  border:4px solid rgba(255, 255, 255, 0.285);
+}
+.btn:hover{ filter:brightness(1.08); transition:.15s; transform:translateY(-1px); }
+.hero-cta{ margin-top:1.1rem; }
+
+/* Cards */
+.card{ background:#fff; border-radius:16px; padding:clamp(1rem,2.5vw,1.5rem); box-shadow:var(--shadow); }
+.card img{ border-radius:12px; }
+
+/* Forms */
+.input,select,textarea{
+  width:100%; padding:.7rem .8rem; border:1px solid #dadada; border-radius:12px; background:#fff;
+}
+label{ display:grid; gap:.35rem; margin:.6rem 0; }
+
+/* Map */
+.map {
+  height: 520px;             /* feste Höhe */
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow); /* optional, passt zum Rest */
+  width: 100%;               /* nimmt die ganze Containerbreite */
+  margin: 1.5rem 0;          /* Abstand nach oben/unten */
+}
+
+/* Button */
+.hero .hero-cta {
+  display: flex;
+  margin: 1.2rem auto 0; 
+  height: 60px;  /* centers horizontally */
+  width: max-content;      /* shrink to button size */
+}
+
+
+.hero p {
+  display: flex;
+  justify-content: center;
+}
+
+/* keep Leaflet below header */
+.leaflet-container{ z-index:0 !important; }
+
+.map-btn {
+  display: flex;
+  justify-content: center; /* center horizontally */
+  margin-top: 1rem;        /* space between map and button */
+}
+
+.map-btn .btn {
+  margin: 0 auto;          /* make sure button itself is centered */
+}
+.map-actions{ display:flex; justify-content:center; margin-top:1rem; }
+.center{
+  text-align:center;
+}
+
+
+/* Footer */
+
+.footer {
+  background: #f6f6d8; /* same as your page bg tone */
+  padding: 1rem 0;
+}
+
+.footer-links {
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.footer-links a {
+  color: #4a4a2e;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: #6b8e23;
+}
+
+
+
+/* Slideshow Background */
+.slideshow-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.slideshow-background .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+  background-blend-mode: multiply;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.slideshow-background .slide.active {
+  opacity: 1;
+}
+
+
+/* ————— SPEISEKARTE ————— */
+
+
+
+/* =============== SPEISEKARTE: Zwei-Spalten-Layout =============== */
+
+/* Kategorie-Container wird zum Grid */
+.menu-category{
+  /* Abstand oben/unten je Abschnitt */
+  padding: clamp(0.5rem, 1.2vw, 1.25rem) 0 clamp(1.25rem, 2.5vw, 2rem);
+
+  /* 2 Spalten ab ~960px, sonst 1 Spalte */
+  display: grid;
+  grid-template-columns: repeat(2, minmax(320px, 1fr));
+  gap: clamp(16px, 2vw, 28px);
+  align-items: start;
+  
+}
+
+/* Titel & Untertitel über die volle Breite zentrieren */
+.menu-category > .menu-title,
+.menu-category > p,
+.menu-category > h2.menu-title{
+  grid-column: 1 / -1;
+  text-align: center;
+  margin: 0.15rem 0;
+}
+
+/* Dezente Trennlinie direkt unter dem großen Titel (optional) */
+.menu-category > .menu-title + .menu-title::after{
+  content:"";
+  display:block;
+  width: clamp(96px, 12vw, 160px);
+  height: 4px;
+  margin: .7rem auto 0;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #b85c40, #e0a25d);
+  opacity:.85;
+}
+
+/* Ab Tablet/Phone auf eine Spalte umschalten */
+@media (max-width: 960px){
+  .menu-category{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =============== Karte: Einzelnes Gericht =============== */
+
+.menu-item{
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 28px rgba(0,0,0,.06);
+  padding: clamp(0.9rem, 1vw, 1.25rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* Bild, Name, Preis mittig */
+  gap: .6rem;
+  min-height: 100%;      /* Kacheln gleich hoch im Grid */
+}
+
+/* Gericht-Bild oben */
+.menu-item .item-img{
+  width: 180px;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: 12px;
+  display:block;
+}
+
+/* Textblock */
+.menu-item .item-info{
+  width: 100%;
+  text-align: center;
+}
+
+/* Gericht-Name */
+.menu-item .item-name{
+  font-weight: 700;
+  line-height: 1.2;
+  margin: .25rem 0 .15rem;
+  font-size: clamp(1.05rem, 1.1vw + .9rem, 1.5rem);
+}
+
+/* Beschreibung */
+.menu-item .item-desc{
+  margin: 0;
+  color: #5c5c46;
+  font-size: clamp(.92rem, .35vw + .8rem, 1.05rem);
+}
+
+/* Preis – bleibt ein <span>, wird optisch betont */
+.menu-item .item-price{
+  margin-top: .15rem;
+  padding: .45rem .9rem;
+  border-radius: 999px;
+  background: #ebf4877c;
+  color: #2f2f1e;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  border: 1px solid rgba(0,0,0,.06);
+}
+
+/* Dezente Trenner (falls du welche nutzt) */
+.item-sep{
+  grid-column: 1 / -1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(0,0,0,.08), rgba(0,0,0,0));
+  margin: .5rem 0 .75rem;
+  border: 0;
+}
+/* --- enforce site max width (place at EOF of components.css) --- */
+/* FORCE container max width + remove page overflow (place at EOF of components.css) */
+:root{
+  --site-max-width: 1200px; /* adjust if you want narrower/wider */
+}
+
+/* Highest-specificity override to beat earlier rules */
+html body .container {
+  max-width: var(--site-max-width) !important;
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-inline: clamp(16px, 2vw, 24px) !important;
+  box-sizing: border-box !important;
+}
+
+/* Prevent horizontal overflow caused by wide children */
+html, body {
+  overflow-x: hidden !important;
+}
+
+
+/* Category header / separators (append) */
+.menu-category { margin-top: 1.5rem; }
+
+/* header that spans the grid */
+.menu-category > .category-header {
+  grid-column: 1 / -1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap: .4rem;
+  padding: 1.0rem 1.25rem;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.72), rgba(243,244,200,0.35));
+  box-shadow: 0 6px 18px rgba(0,0,0,.04);
+  backdrop-filter: blur(4px);
+  margin-bottom: .9rem;
+}
+
+/* main title + subtitle */
+.category-header .menu-title { margin:0; font-weight:800; color:var(--ink); }
+.category-header .menu-sub { margin:0; font-weight:600; color:var(--ink-soft); font-size:1.05rem; }
+
+/* optional description text */
+.category-header .category-desc {
+  margin: .25rem 0 0; color:var(--ink-soft); text-align:center; max-width:70ch; font-size:0.98rem;
+}
+
+/* decorative separator */
+.category-header .category-sep {
+  width:72px; height:4px; border-radius:3px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--tiamo-red) 70%, var(--tiamo-olive) 30%), var(--tiamo-olive));
+  margin-top:.45rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,.05);
+}
+
+/* smaller variant for compact categories */
+.menu-category.compact > .category-header { padding: .6rem .9rem; }
+
+/* ensure the PDF button stays separate */
+
+
+/* responsive: keep header comfortable on phones */
+@media (max-width:960px){
+  .menu-category > .category-header { padding:.9rem; }
+  .category-header .menu-sub { font-size:1rem; }
+  .category-header .category-desc { font-size:0.95rem; max-width:calc(100% - 2rem); }
+}
+/* 1) header seam */
+.site-topbar{
+  border-bottom: 8px solid var(--tiamo-butter); /* separates rust from page bg */
+}
+
+/* 2) center last item when section has odd number of items */
+.menu-category.has-odd > .menu-item:last-of-type{
+  grid-column: 1 / -1;
+  justify-self: center;
+  max-width: 60%;
+  width: auto;
+}
+@media (max-width:960px){
+  .menu-category.has-odd > .menu-item:last-of-type{
+    max-width: 100%;
+  }
+}
+
+/* 3) optional category backgrounds — add these classes to the <section> you want styled */
+.category-bg-soup{
+  background: linear-gradient(180deg, rgba(255,255,255,0.52), rgba(243,244,200,0.10));
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,.03);
+  margin-bottom: 1rem;
+}
+.category-bg-pizza{
+  background: linear-gradient(180deg, rgba(255,248,240,0.5), rgba(250,230,225,0.06));
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,.03);
+  margin-bottom: 1rem;
+}
+/* add more variants (category-bg-...) as needed */
+/* QUICK: force category background to cover header + items (high specificity) */
+
+/* center PDF button and make it start small */
+
+
+/* if button is not inside .pdf-btn, use this helper class */
+.btn.center-block { display:inline-block; margin-left:auto; margin-right:auto; }
+
+/* start smaller; anime.js will animate scale */
+
+/* circle-to-pill PDF button (no scaling) */
+:root{
+  --pdf-btn-size: 56px;      /* initial circle diameter */
+  --pdf-btn-expanded: 220px; /* width after hover/focus */
+  --pdf-btn-bg: linear-gradient(180deg,var(--tiamo-olive-2),var(--tiamo-olive));
+  --pdf-btn-fg: #fff;
+}
+
+/* ensure parent centers */
+
+/* base circle */
+
+
+/* keyboard access */
+  
+
+/* responsive: reduce expanded width on small screens */
+@media (max-width:480px){
+  :root{ --pdf-btn-expanded: 160px; }
+}
+/* PDF button visible background override */
+  
+
+/* icon inner circle contrast */
+
+
+/* ensure text is readable on expand */
+
+
+/* If a parent rule makes backgrounds transparent, force solid backing on the parent too */
+
+
+
+
+
+/* category-bg-soup: solid background + subtle dotted texture */
+.menu-category.category-bg-soup {
+  /* solid base color (statt gradient) */
+  --soup-bg: #d9e7b7;                  /* Hintergrundfarbe */
+  --dot-color: rgba(184, 30, 30, 0.39);  /* Punktfarbe (sehr dezent) */
+  --dot-color-2: rgba(4, 114, 13, 0.03);/* zweite, feinere Punktlage */
+  --dot-size: 2px;                     /* Punktradius */
+  --dot-spacing: 28px;                 /* Abstand der Punkte */
+
+  background-color: var(--soup-bg) !important;
+
+  /* zwei überlagerte Punktlagen für natürlicheren Look */
+  background-image:
+    radial-gradient(circle, var(--dot-color) var(--dot-size), transparent calc(var(--dot-size) + 0.5px)),
+    radial-gradient(circle, var(--dot-color-2) var(--dot-size), transparent calc(var(--dot-size) + 0.5px));
+  background-position: 0 0, calc(var(--dot-spacing) / 2) calc(var(--dot-spacing) / 2);
+  background-size: var(--dot-spacing) var(--dot-spacing), var(--dot-spacing) var(--dot-spacing);
+  background-repeat: repeat;
+  /* keep existing padding / radius / shadow */
+  border-radius: 16px !important;
+  padding: 24px !important;
+  box-shadow: 0 10px 30px rgba(134, 118, 118, 0.04) !important;
+  margin: 24px 0 !important;
+}
+/* topbar visual seam */
+.site-topbar{
+  position:sticky; top:0; z-index:1200;
+  border-bottom: 8px solid var(--tiamo-butter);        /* strong seam */
+  box-shadow: 0 8px 22px rgba(0,0,0,.06);             /* gentle depth */
+}
+
+/* optional subtle rounded seam under header */
+.site-topbar::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  height: 8px;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(139, 13, 13, 0.493), rgba(139, 13, 13, 0.493));
+  border-radius: 0 0 8px 8px;
+}
+/* PDF button size + image icon */
+:root{
+  --pdf-btn-size: 72px;      /* circle diameter (bigger) */
+  --pdf-btn-expanded: 260px; /* expanded width */
+}
+
+
+/* icon as an <img> inside the circle */
+
+
+/* text hidden until expand */
+
+
+/* expand to pill on hover/focus (no scale) */
+
+/* PDF button: image fills circle when unhovered, shrinks and aligns left when expanded */
+:root{
+  --pdf-btn-circle-size: 72px; /* circle diameter */
+  --pdf-btn-icon-small: 44px;  /* icon size inside expanded pill */
+  --pdf-btn-padding-left: 12px;/* padding when expanded */
+}
+
+/* base: circle stays centered and the icon fills it */
+
+
+/* icon fills the whole circle by default */
+
+/* PDF button: center image in circle state, hide image when expanded */
+:root{
+  --pdf-btn-size: 72px;      /* initial circle diameter */
+  --pdf-btn-expanded: 260px; /* width when expanded */
+  --pdf-btn-icon-gap: 12px;
+}
+
+/* ensure the anchor is a fixed circle initially and centers contents */
+
+/* responsive tweaks */
+@media (max-width:480px){
+  :root{ --pdf-btn-expanded: 180px; --pdf-btn-size: 60px; --pdf-btn-icon-small:36px; }
+  
+}
+
+
+
+/* FORCE exact circle size and box model for PDF button (append to components.css) */
+.pdf-btn > p > a.btn.circle,
+a.btn.circle {
+  box-sizing: border-box !important;
+  width: 72px !important;
+  height: 72px !important;
+  min-width: 72px !important;
+  padding: 0 !important;            /* remove any external padding */
+  font-size: 0 !important;          /* prevent text node width bleed */
+  line-height: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+}
+
+/* ensure the image fits the circle exactly */
+.pdf-btn a.btn.circle .icon,
+a.btn.circle .icon {
+  width: calc(72px - 8px) !important;
+  height: calc(72px - 8px) !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+  margin: 0 !important;
+}
+
+/* expanded state (keep your var fallbacks) */
+.pdf-btn a.btn.circle:hover,
+.pdf-btn a.btn.circle:focus,
+a.btn.circle:hover,
+a.btn.circle:focus {
+  width: var(--pdf-btn-expanded, 260px) !important;
+  border-radius: 999px !important;
+  padding-left: var(--pdf-btn-padding-left, 14px) !important;
+  justify-content: flex-start !important;
+}
+
+/* keep text hidden until expanded */
+.pdf-btn a.btn.circle .text,
+a.btn.circle .text { opacity: 0 !important; }
+.pdf-btn a.btn.circle:hover .text,
+a.btn.circle:hover .text { opacity: 1 !important; }
+/* final: explicit transitions for PDF button (override any `transition: all`) */
+.pdf-btn > p > a.btn.circle,
+a.btn.circle {
+  transition: width 320ms cubic-bezier(.2,.9,.2,1) !important;
+  will-change: width, transform !important;
+}
+
+.pdf-btn a.btn.circle .icon,
+a.btn.circle .icon {
+  transition: opacity 220ms ease, transform 220ms ease !important;
+}
+
+.pdf-btn a.btn.circle .text,
+a.btn.circle .text {
+  transition: opacity 220ms ease 100ms, transform 220ms ease 100ms !important;
+}
+
+/* center PDF button reliably */
+.pdf-btn {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+.pdf-btn > p {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pdf-btn a.btn.circle {
+  margin: 0; /* ensure no stray margins */
+}
+
+
+/* isolated PDF button */
+.pdf-wrap{display:flex;justify-content:center;align-items:center;margin:clamp(12px,2vw,20px) 0;}
+.pdf-button{
+  width:72px;height:72px;box-sizing:border-box;
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:0;border-radius:50%;
+  background:linear-gradient(180deg,#9fbf5a,#6b7d2b);color:#fff;
+  border:1px solid rgba(0,0,0,.06);box-shadow:0 12px 28px rgba(43,54,22,.12);
+  overflow:hidden;white-space:nowrap;text-decoration:none;
+  transition:width .32s cubic-bezier(.2,.9,.2,1),border-radius .24s ease,padding .2s ease;
+}
+.pdf-button__icon{
+  width:64px;height:64px;border-radius:50%;object-fit:cover;display:block;margin:0;
+  transition:width .22s ease,height .22s ease,margin .22s ease;
+}
+.pdf-button__text{
+  opacity:0;transform:translateX(-8px);
+  transition:opacity .22s ease .08s,transform .22s ease .08s;
+  font-weight:700;font-size:.95rem;color:#fff;padding-right:12px;
+}
+.pdf-button:hover,.pdf-button:focus{
+  width:260px;border-radius:999px;justify-content:flex-start;padding-left:14px;
+}
+.pdf-button:hover .pdf-button__icon,.pdf-button:focus .pdf-button__icon{
+  width:44px;height:44px;margin-right:12px;          /* logo stays visible on left */
+}
+.pdf-button:hover .pdf-button__text,.pdf-button:focus .pdf-button__text{
+  opacity:1;transform:translateX(0);
+}
+@media (max-width:480px){
+  .pdf-button{width:60px;height:60px}
+  .pdf-button:hover,.pdf-button:focus{width:180px}
+  .pdf-button__icon{width:52px;height:52px}
+}
+
+/* center wrapper */
+.pdf-wrap { display:flex; justify-content:center; margin:16px 0; }
+
+/* base button: circle -> pill on hover (your SO pattern) */
+.pdf-button{
+  width:72px;
+  height:72px;
+  border-radius:50%;
+  padding:6px;
+  background: #6b7d2b;          /* use your olive */
+  color:#fff;
+  font-size:1rem;
+  box-shadow: 3px 3px rgba(0,0,0,.15);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  overflow:hidden;
+  text-decoration:none;
+  transition: all 0.4s ease 0s;
+}
+
+.pdf-button:hover{
+  width:260px;                  /* expand horizontally */
+  height:72px;
+  border-radius:999px;
+  background:#6b7d2b;
+  color:#fff;
+  box-shadow: 3px 3px rgba(0,0,0,.22);
+}
+
+/* logo stays visible, shrinks on hover */
+.pdf-icon{
+  width:56px; height:56px; border-radius:50%; object-fit:cover;
+  flex:0 0 auto;
+  transition: all 0.3s ease 0s;
+}
+.pdf-button:hover .pdf-icon{ width:36px; height:36px; }
+
+/* text fades in on hover */
+.pdf-text{ opacity:0; transition: all 0.3s ease 0s; font-weight:700; }
+.pdf-button:hover .pdf-text{ opacity:1; }
+
+
+
+
+
+/* floating section nav */
+.section-nav{
+  position:fixed; left:clamp(8px,1.2vw,16px); top:18vh;
+  z-index:1500; pointer-events:none;
+}
+.sn-list{display:flex; flex-direction:column; gap:12px; margin:0; padding:0; list-style:none; pointer-events:auto;}
+.sn-list a{
+  width:56px; height:56px; border-radius:50%;
+  display:grid; place-items:center; background:#a9c8e83b; /* light blue like your mock */
+  border:2px solid rgba(0,0,0,.25);
+  box-shadow:0 6px 14px rgba(0,0,0,.12);
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s;
+}
+.sn-list a img{width:60%; height:60%; object-fit:contain;}
+.sn-list a:hover{transform:translateY(-2px); box-shadow:0 10px 20px rgba(0,0,0,.18);}
+.sn-list a.active{border-color:var(--tiamo-olive, #6b7d2b); box-shadow:0 0 0 4px rgba(107,125,43,.18);}
+.sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;}
+
+/* keep sections from hiding under sticky header */
+.menu-category{ scroll-margin-top: var(--topbar-h, 88px); }
+
+/* mobile: move bar to bottom center */
+@media (max-width: 900px){
+  .section-nav{ left:50%; top:auto; bottom:clamp(10px,2vw,16px); transform:translateX(-50%); }
+  .sn-list{ flex-direction:row; gap:10px; background:rgba(255,255,255,.7); backdrop-filter:blur(6px);
+            border:1px solid rgba(0,0,0,.08); border-radius:999px; padding:8px 10px; }
+  .sn-list a{ width:48px; height:48px; }
+}
+
+/* avoid overlap with header on very tall bars */
+@media (min-height: 900px){
+  .section-nav{ top:22vh; }
+}
+
+
+/* right-side position + panel background */
+.section-nav{
+  left:auto !important;
+  right:clamp(8px,1.2vw,16px) !important;
+}
+.sn-list{
+  background: rgba(255,255,255,.7);
+  backdrop-filter: blur(6px);
+  border:1px solid rgba(138, 48, 48, 0.08);
+  border-radius: 28px;
+  padding: 10px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.14);
+}
+
+/* adjustable hover scale */
+:root{
+  --sn-hover-scale: 1.2; /* tweak later */
+}
+.sn-list a{ transform: scale(1); }
+.sn-list a:hover{ transform: scale(var(--sn-hover-scale)); }
+
+/* keep active ring visible over the panel */
+.sn-list a.active{ box-shadow: 0 0 0 4px rgba(107,125,43,.2); }
+
+/* mobile: keep at bottom center with same panel */
+@media (max-width: 900px){
+  .section-nav{ right:auto !important; left:50% !important; transform:translateX(-50%); }
+  .sn-list{ flex-direction:row; border-radius:999px; padding:8px 10px; }
+  .sn-list a{ width:48px; height:48px; }
+}
+
+/* === Right rail: always centered, never clipped === */
+:root{
+  /* auto-scale icon size with viewport height */
+  --sn-btn: clamp(40px, 6.5vh, 56px);     /* button diameter */
+  --sn-gap: clamp(8px, 1.2vh, 12px);      /* gap between buttons */
+  --sn-pad: clamp(8px, 1.5vh, 12px);      /* panel padding */
+}
+
+.section-nav{
+  position: fixed;
+  right: clamp(8px, 1.2vw, 16px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1500;
+}
+
+.sn-list{
+  display: flex;
+  flex-direction: column;
+  gap: var(--sn-gap);
+  padding: var(--sn-pad);
+  margin: 0;
+  list-style: none;
+
+  /* panel */
+  background: rgba(255,255,255,.72);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 28px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.14);
+
+  /* keep inside viewport */
+  max-height: calc(100vh - 2 * var(--sn-pad) - 20px);
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+/* buttons auto-scale */
+.sn-list a{
+  width: var(--sn-btn);
+  height: var(--sn-btn);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #e6eef5;
+  border: 2px solid rgba(0,0,0,.25);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.sn-list a img{ width: 60%; height: 60%; object-fit: contain; }
+
+/* hover scale remains adjustable */
+:root{ --sn-hover-scale: 1.12; }
+.sn-list a:hover{ transform: scale(var(--sn-hover-scale)); }
+
+/* active state ring */
+.sn-list a.active{ box-shadow: 0 0 0 4px rgba(107,125,43,.20); }
+
+/* optional: subtle scrollbar styling */
+.sn-list::-webkit-scrollbar{ width:10px }
+.sn-list::-webkit-scrollbar-thumb{ background: rgba(0,0,0,.15); border-radius:8px }
+
+/* mobile keeps bottom pill bar */
+@media (max-width: 900px){
+  .section-nav{ top:auto; bottom: clamp(10px,2vw,16px); left:50%; right:auto; transform: translateX(-50%); }
+  .sn-list{ flex-direction: row; max-height:none; overflow:visible; border-radius:999px; }
+}
+
+
+/* Slim section width */
+.section-narrow{
+  /* tune these two numbers */
+  --section-max: 1080px;
+  --section-pad: clamp(12px, 2vw, 24px);
+
+  max-width: var(--section-max);
+  margin-inline: auto;
+  padding-inline: var(--section-pad);
+}
+
+/* ensure the grid respects the slimmer width */
+.section-narrow .menu-category{
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: clamp(12px, 1.6vw, 20px);
+}
+
+/* stack earlier on smaller screens */
+@media (max-width: 1200px){
+  .section-narrow .menu-category{ grid-template-columns: 1fr; }
+}
+
+/* tighten card padding a bit inside the slim layout */
+.section-narrow .menu-item{ padding: clamp(.7rem, 1.2vw, 1rem); }
+
+
+/* unify section width and centering */
+.flow-narrow{
+  --section-max:1080px;
+  --section-pad:clamp(12px,2vw,24px);
+  max-width:var(--section-max);
+  margin-inline:auto;
+  padding-inline:var(--section-pad);
+}
+
+/* add right padding only when the right rail is active */
+@media (min-width:900px){
+  html.rail-active .flow-narrow{
+    padding-right:calc(var(--section-pad) + var(--rail-space,88px)) !important;
+  }
+  html.rail-active .flow-narrow .menu-category{ padding-right:0 !important; }
+}
+
+/* grid inside the slim container */
+.flow-narrow .menu-category{
+  margin-inline:auto;
+  grid-template-columns:repeat(2,minmax(280px,1fr));
+  gap:clamp(12px,1.6vw,20px);
+}
+
+.flow-narrow .menu-item{ padding:clamp(.7rem,1.2vw,1rem); }
+.flow-narrow .item-img{ max-height:clamp(160px,10vh,220px); }
+
+@media (max-width:1200px){
+  .flow-narrow .menu-category{ grid-template-columns:1fr; }
+}
+
+/* utility to center the green circle block */
+.center-flow{ display:flex; justify-content:center; }
+
+/* --- fix header overlap + anchor offset + right rail fit --- */
+:root{ --topbar-h: 88px; }                     /* set your real header height */
+
+.site-topbar{ position: sticky; top: 0; z-index: 3000; }
+
+/* in-page targets won’t hide under the sticky header */
+.menu-category[id]{ scroll-margin-top: calc(var(--topbar-h) + 12px); }
+
+/* right rail: stay clear of header and never clip */
+.section-nav{ z-index: 1500; }
+.sn-list{
+  max-height: calc(100vh - var(--topbar-h) - 24px);
+  overflow: auto;
+}
+
+/* if your rail is vertically centered, center within the space below the header */
+@media (min-width: 900px){
+  .section-nav{
+    top: calc(var(--topbar-h) + (100vh - var(--topbar-h)) / 2);
+    transform: translateY(-50%);
+    right: clamp(8px,1.2vw,16px);
+  }
+}
+
+/* optional: first block nudge (use if the very top still tucks under header) */
+main{ scroll-margin-top: var(--topbar-h); }
+
+
+
+/* image sizing via variables */
+:root{
+  --item-img-w: 300px;
+  --item-img-h: 200px;
+  --item-img-fit: cover;
+  --item-img-maxh: none;      /* keep none when using fixed height */
+  --item-img-margin: 0 auto;  /* center by default */
+}
+
+.menu-item .item-img{
+  width: var(--item-img-w) !important;
+  height: var(--item-img-h) !important;
+  object-fit: var(--item-img-fit) !important;
+  max-height: var(--item-img-maxh) !important;
+  display: block !important;
+  margin: var(--item-img-margin) !important;
+  border-radius: 12px;
+}
+
+/* presets you can toggle on any parent (e.g., #menu-flow or .menu-category) */
+.img-thumb{
+  --item-img-w: 180px;
+  --item-img-h: 180px;
+  --item-img-fit: cover;
+  --item-img-margin: 0 auto;
+}
+
+.img-banner{
+  --item-img-w: 100%;
+  --item-img-h: 180px;        /* change to 200–240px if you want taller */
+  --item-img-fit: cover;
+  --item-img-margin: 0;
+}
+
+
+/* sub-section headings inside a menu category */
+.menu-category .menu-title{
+  grid-column: 1 / -1;            /* span across both columns */
+  margin: 2rem 0 1rem;            /* more vertical space */
+  font-size: 1.25rem;             /* bigger than item names */
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: #2b2b1a;
+  position: relative;
+}
+
+/* decorative line under each subheading */
+.menu-category .menu-title::after{
+  content:"";
+  display:block;
+  width: 60px;
+  height: 2px;
+  background: #6b7d2b;            /* your olive accent */
+  margin: .4rem auto 0;
+  border-radius:2px;
+}
+
+
+
+/* spacing + editable background for item names */
+:root{
+  --item-banner-gap: 0.85rem;                   /* space between image and name */
+  --item-name-bg: rgba(255,255,255,.65);        /* name chip background */
+  --item-name-color: #1e1e14;                   /* text color */
+  --item-name-pad: .25rem .6rem;                /* chip padding */
+  --item-name-radius: 10px;                     /* chip radius */
+  --item-name-shadow: 0 6px 14px rgba(0,0,0,.06);/* chip shadow */
+  --item-name-blur: blur(4px);                  /* backdrop strength */
+}
+
+.menu-item .item-img{
+  margin-bottom: var(--item-banner-gap) !important;
+}
+
+.menu-item .item-name{
+  display: inline-block;
+  background: var(--item-name-bg);
+  color: var(--item-name-color);
+  padding: var(--item-name-pad);
+  border-radius: var(--item-name-radius);
+  box-shadow: var(--item-name-shadow);
+  backdrop-filter: var(--item-name-blur);
+}
+
+/* optional presets you can drop on any parent (.menu-category or #menu-flow) */
+.name-chip-olive{
+  --item-name-bg: rgba(243,244,233,.9);   /* pale yellow/olive */
+  --item-name-color: #2b2b1a;
+}
+.name-chip-white{
+  --item-name-bg: rgba(255,255,255,.85);
+  --item-name-color: #1f1f1a;
+}
+.name-chip-none{
+  --item-name-bg: transparent;
+  --item-name-shadow: none;
+  --item-name-blur: none;
+}
+/* Subsection panel inside a menu-category */
+.menu-category .subsection{
+  grid-column: 1 / -1;
+  background: rgba(255,255,255,.55);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 14px;
+  padding: clamp(12px,2vw,16px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.06);
+  margin: clamp(14px,2.2vw,20px) 0;
+}
+
+/* Subsection title */
+.menu-category .subsection > h2{
+  margin: 0 0 .6rem;
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+/* Grid of items inside a subsection */
+.menu-category .subsection .subgrid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: clamp(12px,1.6vw,20px);
+}
+@media (max-width: 1200px){
+  .menu-category .subsection .subgrid{ grid-template-columns: 1fr; }
+}
+
+:root{
+  --bg-waves-speed: .006;      /* slower ← increase to speed up */
+  --bg-waves-op-min: .04;
+  --bg-waves-op-max: .16;
+  /* optional:
+  --bg-waves-lines: 30;
+  --bg-waves-stepx: 20;
+  --bg-waves-amp: 14;
+  --bg-waves-jitter: 8;
+  --bg-waves-f1: .010;
+  --bg-waves-f2: .0035;
+  */
+}
+/* Waves bg layering */
+#bg-waves{position:fixed;inset:0;z-index:0!important;pointer-events:none}
+header,main,footer{position:relative;z-index:1}
+/* Sticky footer: bleibt unten bei kurzen Seiten, sonst am Seitenende */
+html, body { height: 100%; }
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+main {
+  flex: 1 1 auto; /* füllt verfügbare Höhe */
+}
+.footer {
+  flex-shrink: 0;
+  /* bei Bedarf hier visuelle Anpassungen behalten */
+}
+/* ===== Kontakt: hübsch + konsistent ===== */
+.section-title{
+  margin: 0;
+  text-align: center;
+  font-family: "Noto Serif", serif;
+  font-weight: 700;
+  letter-spacing: .02em;
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  color: var(--ink);
+}
+.section-sub{
+  text-align: center;
+  margin: .35rem auto 1.25rem;
+  color: var(--ink-soft);
+  max-width: 60ch;
+}
+
+.section-sep{
+  width: clamp(88px,10vw,140px);
+  height: 4px;
+  margin: .6rem auto 1.6rem;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--tiamo-red), var(--tiamo-olive));
+  opacity: .85;
+}
+
+.contact-wrap{
+  display: grid;
+  grid-template-columns: repeat(2,minmax(260px,1fr));
+  gap: clamp(16px,2vw,24px);
+  align-items: start;
+}
+
+.contact-card{
+  background:#fff;
+  border-radius:16px;
+  box-shadow: var(--shadow);
+  padding: clamp(1rem,2.2vw,1.4rem);
+}
+
+.kv{list-style:none;margin:0;padding:0;display:grid;gap:.6rem}
+.kv li{display:grid;grid-template-columns:32px 1fr;gap:.6rem;align-items:start}
+.icon-circle{
+  width:32px;height:32px;border-radius:50%;
+  display:grid;place-items:center;
+  background: color-mix(in srgb, var(--tiamo-olive) 18%, #fff);
+  color: var(--tiamo-olive);
+  box-shadow: 0 4px 12px rgba(0,0,0,.06);
+}
+.icon-circle svg{width:18px;height:18px;display:block}
+
+.hours{list-style:none;margin:.2rem 0 0;padding:0;display:grid;gap:.35rem}
+.hours li{display:flex;justify-content:space-between;gap:1rem;border-bottom:1px dashed rgba(0,0,0,.08);padding:.2rem 0}
+.hours .day{color:#2b2b1a;font-weight:600}
+.hours .time{color:#334}
+
+.map-section .map{margin-top: .8rem}
+
+/* Responsive */
+@media (max-width: 900px){
+  .contact-wrap{grid-template-columns:1fr}
+}
+/* ===== Kontakt: dekorative Hintergründe ===== */
+
+/* Grundblock: weiches Panel mit eigenem Hintergrund */
+.section-block{
+  position: relative;
+  border-radius: 16px;
+  padding: clamp(16px,2.2vw,24px);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,.06);
+  background: color-mix(in srgb, var(--tiamo-butter) 88%, #fff);
+  margin: clamp(14px,2vw,20px) 0;
+}
+
+/* Deko-Layer (liegt hinter Inhalt) */
+.section-block::before{
+  content:"";
+  position:absolute; inset:0;
+  z-index:-1;
+  opacity:.45;                /* Stärke des Musters */
+  pointer-events:none;
+}
+
+/* Variante 1: Kontakt-Paneel – sanfte Olive-Streifen */
+.contact-bg::before{
+  background:
+    radial-gradient(1200px 180px at 50% -40px, rgba(255,255,255,.55), transparent 60%),
+    repeating-linear-gradient(
+      -12deg,
+      rgba(107,125,43,.10) 0, rgba(107,125,43,.10) 8px,
+      rgba(107,125,43,.04) 8px, rgba(107,125,43,.04) 22px
+    );
+}
+
+/* Variante 2: Karten-Paneel – feine Linien wie Geländeform */
+.map-bg::before{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,0) 40%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(107,125,43,.10) 0, rgba(107,125,43,.10) 2px,
+      rgba(107,125,43,.04) 2px, rgba(107,125,43,.04) 16px
+    );
+}
+
+/* Titel + Untertitel innerhalb eines Blocks angleichen */
+.section-block .section-title{
+  margin: 0;
+  text-align: center;
+  font-family: "Noto Serif", serif;
+  font-weight: 700;
+  letter-spacing: .02em;
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  color: var(--ink);
+}
+.section-block .section-sub{
+  text-align:center;
+  margin:.35rem auto 1rem;
+  color:var(--ink-soft);
+  max-width:60ch;
+}
+.section-block .section-sep{
+  width: clamp(88px,10vw,140px);
+  height: 4px;
+  margin: .5rem auto 1.2rem;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--tiamo-red), var(--tiamo-olive));
+  opacity: .9;
+}
+
+/* Abstand zum restlichen Inhalt */
+.section-block .map{ margin-top: .8rem; }
+.section-block .map-actions{ margin-top: .8rem; }
+
+/* Responsive Gitter wiederverwenden */
+.section-block .contact-wrap{ display:grid; grid-template-columns:repeat(2,minmax(260px,1fr)); gap:clamp(16px,2vw,24px) }
+@media (max-width: 900px){
+  .section-block .contact-wrap{ grid-template-columns:1fr }
+}
+
+
+
+
+
+/* ===== Topbar: Pill-Buttons + Icon-Popup ===== */
+:root{
+  --nav-pill-bg: rgba(255,255,255,.18);
+  --nav-pill-bg-h: rgba(255,255,255,.32);
+  --nav-pill-ink: #fff;
+  --nav-pill-ink-h: #fff;
+}
+
+/* Container spacing bleibt wie bisher; nur Links stylen */
+.main-nav a.nav-pill{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .45rem .9rem;
+  margin-inline: .15rem;
+  border-radius: 999px;
+  color: var(--nav-pill-ink);
+  background: var(--nav-pill-bg);
+  text-decoration: none;
+  font-weight: 700;
+  line-height: 1;
+  transition: filter .18s ease, transform .18s ease, background .18s ease;
+}
+.main-nav a.nav-pill[aria-current="page"]{
+  background: var(--nav-pill-bg-h);
+  filter: brightness(1.08);
+}
+
+/* Icon-Popup: kommt von hinten, zeigt kleines SVG */
+.main-nav a.nav-pill::after{
+  content:"";
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 40%) scale(.85);
+  bottom: -4px;
+  width: 18px; height: 18px;
+  opacity: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,.18));
+  transition: transform .22s ease, opacity .22s ease;
+  background: currentColor;
+  -webkit-mask: var(--nav-ic) center/contain no-repeat;
+          mask: var(--nav-ic) center/contain no-repeat;
+}
+
+/* Hover/Focus: Button heller + Icon poppt nach oben */
+.main-nav a.nav-pill:hover,
+.main-nav a.nav-pill:focus{
+  background: var(--nav-pill-bg-h);
+  color: var(--nav-pill-ink-h);
+}
+.main-nav a.nav-pill:hover::after,
+.main-nav a.nav-pill:focus::after{
+  opacity: 1;
+  transform: translate(-50%, -65%) scale(1);
+}
+
+/* Daten-Attribut → Icon setzen (Data-URI, keine extra Dateien nötig) */
+.main-nav a.nav-pill[data-ic="home"]{
+  --nav-ic: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'><path d='M12 3 3 10v11h6v-6h6v6h6V10z'/></svg>");
+}
+.main-nav a.nav-pill[data-ic="menu"]{
+  --nav-ic: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'><path d='M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z'/></svg>");
+}
+.main-nav a.nav-pill[data-ic="offer"]{
+  --nav-ic: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'><path d='M21 11l-8-8H7l-6 6v6l8 8h6l6-6v-6zM7 5h4l7 7-4 4-7-7V5z'/></svg>");
+}
+.main-nav a.nav-pill[data-ic="contact"]{
+  --nav-ic: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'><path d='M20 4H4a2 2 0 0 0-2 2v1l10 6 10-6V6a2 2 0 0 0-2-2Zm0 6.3-9.4 5.6a1 1 0 0 1-1.2 0L4 10.3V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.7Z'/></svg>");
+}
+
+/* Tastaturfokus sichtbar */
+.main-nav a.nav-pill:focus{ outline: 2px solid rgba(255,255,255,.8); outline-offset: 2px; }
+
+
+/* === Topbar icon popup ABOVE the button (override) === */
+.site-topbar{ overflow: visible; }           /* ensure popups aren't clipped */
+.main-nav a.nav-pill{ overflow: visible; }   /* allow ::after to sit outside */
+
+.main-nav a.nav-pill::after{
+  /* icon sits ABOVE the pill, not inside */
+  bottom: calc(100% - 6px);                  /* anchor above top edge */
+  left: 50%;
+  transform: translate(-50%, 10px) scale(.86); /* start just above, slightly down */
+  opacity: 0;
+  z-index: 2;                                /* render over the pill */
+  width: 18px; height: 18px;
+  position: absolute;
+  content: "";
+  pointer-events: none;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,.22));
+  background: currentColor;
+  -webkit-mask: var(--nav-ic) center/contain no-repeat;
+          mask: var(--nav-ic) center/contain no-repeat;
+  transition: transform .22s ease, opacity .22s ease;
+}
+
+.main-nav a.nav-pill:hover::after,
+.main-nav a.nav-pill:focus::after{
+  /* pop UP over the pill */
+  transform: translate(-50%, -6px) scale(1);
+  opacity: 1;
+}
+/* === Nav-Icon Abstand + Rotation steuerbar pro Link === */
+.main-nav a.nav-pill{
+  /* Default-Werte, pro Link überschreibbar */
+  --nav-ic-gap: 10px;      /* Abstand zwischen Pill-Oberkante und Icon */
+  --nav-ic-rot: 40deg;      /* Rotation des Icons */
+}
+
+.main-nav a.nav-pill::after{
+  bottom: calc(100% + var(--nav-ic-gap));      /* Abstand nach oben */
+  transform: translate(-50%, 0) rotate(var(--nav-ic-rot)) scale(1);
+  /* rest bleibt wie zuvor (mask, size, shadow, transition ...) */
+}
+/* ===== Datenschutz – Styles ===== */
+.privacy-hero{
+  background: linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.55)),
+              repeating-linear-gradient(-10deg, rgba(107,125,43,.08) 0 8px, rgba(107,125,43,.03) 8px 22px);
+  border:1px solid rgba(0,0,0,.06);
+  border-radius:16px; padding:clamp(16px,2.2vw,22px);
+  box-shadow:var(--shadow); margin:clamp(16px,2.2vw,22px) 0;
+}
+.privacy-hero h1{ margin:0 0 .35rem; font-family:"Noto Serif",serif; font-size:clamp(1.6rem,2.6vw,2.2rem) }
+
+.policy{
+  display:grid; gap:clamp(12px,1.6vw,16px);
+  margin:clamp(12px,2vw,20px) 0;
+}
+.policy details{
+  background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:14px;
+  box-shadow:var(--shadow); overflow:hidden;
+}
+.policy summary{
+  list-style:none; cursor:pointer; padding:14px 16px;
+  font-weight:700; display:flex; gap:10px; align-items:center;
+  background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(246,246,216,.65));
+}
+.policy summary::-webkit-details-marker{display:none}
+.policy .panel{ padding:14px 16px; color:#2b2b1a }
+.policy p{ margin:.4rem 0 }
+.badge{ display:inline-block; font-size:.85rem; padding:.12rem .5rem; border-radius:999px;
+        background:rgba(107,125,43,.15); color:#2b2b1a; border:1px solid rgba(0,0,0,.06) }

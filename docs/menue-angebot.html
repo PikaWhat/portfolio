@@ -1,0 +1,54 @@
+<!doctype html><html lang="de">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Menü-Angebot – Trattoria Tiamo</title>
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/layout.css">
+  <link rel="stylesheet" href="./css/components.css">
+</head>
+<body>
+<header class="site-topbar">
+  <div class="container nav">
+    <a href="index.html" class="logo"><img src="./img/Logo/Group 5.png" alt="Trattoria Tiamo"></a>
+    <nav class="main-nav" aria-label="Hauptnavigation">
+  <a href="index.html" class="nav-pill" data-ic="home">Home</a>
+  <a href="speisekarte.html" class="nav-pill" data-ic="menu">Speisekarte</a>
+  <a href="menue-angebot.html" class="nav-pill" data-ic="offer">Menü-Angebot</a>
+  <a href="kontakt.html" class="nav-pill" data-ic="contact">Kontakt</a>
+</nav>
+
+    <div class="right-slot"></div>
+  </div>
+</header>
+
+<main class="container" style="margin:clamp(1.5rem,4vw,3rem) 0">
+  <h1>Menü-Angebot</h1>
+  <section class="grid grid-2">
+    <article class="card"><h2>Mittagsmenü</h2><p>Montag–Freitag, 12–15 Uhr.</p></article>
+    <article class="card"><h2>Wochenangebot</h2><p>Saisonale Gerichte und Empfehlungen.</p></article>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-links">
+    <p> 
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+    </p>
+  </div>
+</footer>
+<script src="./js/animationen.js"></script>
+<script src="./js/bg-waves.js" defer></script>
+<script>
+  document.body.dataset.waves = 'on';
+  (function () {
+    var s = document.createElement('script');
+    s.src = './js/bg-waves.js?v=' + Date.now();
+    s.defer = true;
+    s.onload = function(){ console.log('bg-waves loaded'); };
+    s.onerror = function(){ alert('bg-waves.js not found at ' + s.src); };
+    document.body.appendChild(s);
+  })();
+</script>
+</body>
+</html>

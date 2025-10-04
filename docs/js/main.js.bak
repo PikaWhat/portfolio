@@ -1,0 +1,20 @@
+// overlay menu toggle + esc close
+(function () {
+  const btn = document.getElementById('menuBtn');
+  const panel = document.getElementById('menuPanel');
+  if (!btn || !panel) return;
+
+  const open = () => { panel.classList.add('open'); panel.setAttribute('aria-hidden','false'); btn.setAttribute('aria-expanded','true'); };
+  const close = () => { panel.classList.remove('open'); panel.setAttribute('aria-hidden','true'); btn.setAttribute('aria-expanded','false'); };
+
+  btn.addEventListener('click', () => panel.classList.contains('open') ? close() : open());
+  panel.addEventListener('click', e => { if (e.target === panel || e.target.tagName === 'A') close(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+})();
+// mark sections with an odd number of .menu-item children
+(function(){
+  document.querySelectorAll('.menu-category').forEach(cat=>{
+    const count = cat.querySelectorAll('.menu-item').length;
+    if(count % 2 === 1) cat.classList.add('has-odd'); else cat.classList.remove('has-odd');
+  });
+})();
