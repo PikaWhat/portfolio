@@ -28,6 +28,14 @@ font-variation-settings: "wdth" 100;
   font-style: normal;
 }
 
+.playwrite-cuba-1 {
+  font-family: "Playwrite CU", cursive;
+  font-size: 3rem;;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  padding: 10px;
+}
 .playwrite-cuba {
   font-family: "Playwrite CU", cursive;
   font-optical-sizing: auto;

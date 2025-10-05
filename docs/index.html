@@ -1,87 +1,143 @@
-<!doctype html><html lang="de">
+<!doctype html>
+<html lang="de">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Trattoria Tiamo – Home</title>
   <meta name="description" content="Italienische Küche in Steglitz. Großer Biergarten. Ausgewählte Weine.">
-  <!-- Google Schriften -->
 
-<!-- Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Ms+Madi&family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ms+Madi&family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
-  <!-- <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet"> -->
   <link rel="stylesheet" href="./css/base.css">
   <link rel="stylesheet" href="./css/layout.css">
   <link rel="stylesheet" href="./css/components.css">
   <link rel="stylesheet" href="./css/fonts.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ms+Madi&family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Twinkle+Star&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Send+Flowers&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playwrite+CU:wght@100..400&display=swap" rel="stylesheet">
 </head>
 
-<!--Body-->
-<body style="--hero-img:url('./img/hero/innenraum.webp')">
+<body class="home" style="--hero-img:url('./img/hero/innenraum.webp')">
 
 <header class="site-topbar">
-   <div class="container nav">
+  <div class="container nav">
     <a href="index.html" class="logo"><img src="./img/Logo/Group 5.png" alt="Trattoria Tiamo"></a>
     <nav class="main-nav" aria-label="Hauptnavigation">
-  <a href="index.html" class="nav-pill" data-ic="home">Home</a>
-  <a href="speisekarte.html" class="nav-pill" data-ic="menu">Speisekarte</a>
-  <a href="menue-angebot.html" class="nav-pill" data-ic="offer">Menü-Angebot</a>
-  <a href="kontakt.html" class="nav-pill" data-ic="contact">Kontakt</a>
-</nav>
-
+      <a href="index.html" class="nav-pill" data-ic="home">Home</a>
+      <a href="speisekarte.html" class="nav-pill" data-ic="menu">Speisekarte</a>
+      <a href="menue-angebot.html" class="nav-pill" data-ic="offer">Menü-Angebot</a>
+      <a href="kontakt.html" class="nav-pill" data-ic="contact">Kontakt</a>
+    </nav>
     <div class="right-slot"></div>
   </div>
 </header>
 
 <main>
+  <!-- HERO -->
   <section class="hero">
-  <div class="slideshow-background">
-    <div class="slide active" style="background-image: url('./img/hero/innenraum.webp')"></div>
-    <div class="slide" style="background-image: url('./img/Ruame/InnenRaum.png')"></div>
-    <!-- Add more slides as needed -->
-  </div>
-  
-  
-  <div class="hero-inner">
-    <h1 class="überschrift">
-      Buongiorno und Willkommen im Restaurant <br><span class="MS-Madi">Tiamo</span>
-    </h1>
+    <div class="slideshow-background">
+      <div class="slide active" style="background-image: url('./img/hero/innenraum.webp')"></div>
+      <div class="slide" style="background-image: url('./img/Ruame/InnenRaum.png')"></div>
+    </div>
 
-    <!--
-    <p>Italienische Küche in Steglitz. Großer Biergarten. Ausgewählte Weine.</p>
-    -->
-    <p>Wir möchten Sie in unseren großen Biergarten mit unseren frischen Spezialitäten und kühlen Getränken verwöhnen.</p>
-    <a class="btn hero-cta" href="speisekarte.html">ENTDECKEN</a>
-  </div>
+    <div class="hero-inner">
+      <h1 class="überschrift">
+        Buongiorno und Willkommen im Restaurant <br><span class="MS-Madi">Tiamo</span>
+      </h1>
+      <p>Wir möchten Sie in unseren großen Biergarten mit unseren frischen Spezialitäten und kühlen Getränken verwöhnen.</p>
+      <a class="btn hero-cta" href="speisekarte.html">ENTDECKEN</a>
+    </div>
+  </section>
+
+  <!-- PINNED WHITE REVEAL (Apple-style) -->
+  <!-- Scroll stage 1: Angebote card -->
+<!-- Offers -->
+<section class="offers-section scroll-stage" id="angebote">
+  <div class="offers-content">
+    <!-- Tageskarte: shows first page, downloads on click -->
+    <article class="offer-card pdf-card" data-download="./pdf/tageskarte.pdf">
+      <h2 class="playwrite-cuba-1">Tageskarte</h2>
+     
+
+      <!-- lightweight preview: uses PDF if allowed, falls back to image -->
+      <div class="pdf-preview">
+        <object data="./img/menu/Tageskarte_1.pdf"
+                type="application/pdf"
+                aria-label="Tageskarte Vorschau">
+          <img src="./img/menu/image.png" alt="Tageskarte Vorschau">
+        </object>
+        
+      </div>
+      
+    </article>
+
+    <article class="offer-card pdf-card" data-download="./pdf/tageskarte.pdf">
+      <h2 class="playwrite-cuba-1">Wochenangebot</h2>
+     
+
+      <!-- lightweight preview: uses PDF if allowed, falls back to image -->
+      <div class="pdf-preview">
+        <object data="./img/menu/Tageskarte_1.pdf"
+                type="application/pdf"
+                aria-label="Tageskarte Vorschau">
+          <img src="./img/Assets/image.png" alt="Tageskarte Vorschau">
+        </object>
+        
+      </div>
+      
+    </article>
+
+    
+
+    <!-- Wochenangebote: your normal card -->
+    
 </section>
 
 
-  <section class="container grid grid-2" style="margin:clamp(1.5rem,4vw,3rem) 0">
-    <article class="card">
-      <img src="./img/Ruame/InnenRaum.png" alt="Innenbereich der Trattoria">
-      <p style="margin-top:.75rem">Mediterranes Flair und frische Küche zum Verweilen oder für die Mitnahme.</p>
-    </article>
-    <article class="card">
-      <h2 style="margin-top:0">Unsere Wochenangebote!</h2>
-      <p></p>
-      <p><a class="btn" href="./html/speisekarte.html">Jetzt ansehen!</a></p>
-    </article>
-  </section>
-</main>
+<section class="scroll-stage restaurant-section" id="unser-restaurant">
+    <h2 class="section-title">Unser Restaurant</h2>
+    <div class="horizontal-scroll-container">
+        <div class="scroll-content">
+            <!-- Add your restaurant images here -->
+            <div class="restaurant-image">
+                <img src="img/Ruame/InnenRaum.png" alt="Restaurant Ambiente">
+            </div>
+            <div class="restaurant-image">
+                <img src="img/Ruame/restaurant2.jpg" alt="Unser Koch bei der Arbeit">
+            </div>
+            <div class="restaurant-image">
+                <img src="img/Ruame/restaurant3.jpg" alt="Restaurant Innenansicht">
+            </div>
+            <!-- Add more images as needed -->
+        </div>
+    </div>
+</section>
+
+
+    <!-- Add more image paths here anytime -->
+
 
 <footer class="footer">
   <div class="footer-links">
-    <p> 
-        <a href="impressum.html">Impressum</a>
-        <a href="datenschutz.html">Datenschutz</a>
+    <p>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
     </p>
   </div>
 </footer>
 
-<!--Scripts-->
+<!-- Scripts -->
 <script src="./js/animationen.js"></script>
 <script src="./js/bg-waves.js" defer></script>
+<script src="./js/home-scroll.js" defer></script>
 <script>
   document.body.dataset.waves = 'on';
   (function () {
@@ -94,6 +150,5 @@
   })();
 </script>
 
-<!-------------->
 </body>
 </html>

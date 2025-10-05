@@ -1299,3 +1299,412 @@ main {
 .policy p{ margin:.4rem 0 }
 .badge{ display:inline-block; font-size:.85rem; padding:.12rem .5rem; border-radius:999px;
         background:rgba(107,125,43,.15); color:#2b2b1a; border:1px solid rgba(0,0,0,.06) }
+
+        /* === Right rail: keep clear of top bar on short screens === */
+:root{ --topbar-h: 88px; } /* ggf. auf deine reale Headerhöhe anpassen */
+
+@media (max-height: 820px){
+  .section-nav{
+    top: calc(var(--topbar-h) + 12px) !important; /* start below top bar */
+    transform: none !important;                   /* no vertical centering */
+  }
+  .sn-list{
+    max-height: calc(100vh - var(--topbar-h) - 24px) !important;
+    overflow: auto !important;                    /* scroll if too tall */
+  }
+}
+
+
+
+
+
+/* ===== Scroll-driven “Apple-like” sections ===== */
+.pin-section{
+  position: relative;
+  min-height: 200vh;                 /* gives room to scroll */
+  padding: 0;
+}
+.pin-section .pin-wrap{
+  position: sticky;
+  top: calc(var(--topbar-h, 88px) + 16px);
+  z-index: 2;
+}
+
+/* White canvas reveal */
+.pin-white{
+  --reveal-bg: #fff;
+  --ink-reveal: #161611;
+  background: transparent;
+}
+.pin-white .pin-wrap{
+  background: var(--reveal-bg);
+  color: var(--ink-reveal);
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.12);
+  padding: clamp(24px, 6vw, 64px);
+  transform: translateY(40px);
+  opacity: .0;
+  transition: opacity .25s linear, transform .25s linear;
+}
+.pin-white .pin-head{
+  margin: 0 0 .4rem;
+  text-align: center;
+  font-family: "Noto Serif", serif;
+  font-weight: 700;
+  font-size: clamp(1.8rem, 4.2vw, 3rem);
+}
+.pin-white .pin-sub{ text-align:center; margin: .2rem 0 1.1rem; color:#444; }
+.pin-white .pin-cta{ text-align:center; }
+
+/* Horizontal collage (pinned) */
+.pin-gallery{ background: transparent; }
+.pin-gallery .pin-wrap{ padding: 0; }
+.hs-viewport{
+  position: relative;
+  overflow: hidden;
+  height: clamp(260px, 48vh, 520px);
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.12);
+  background: #fff;
+  margin: clamp(18px, 4vw, 28px) auto;
+  max-width: var(--site-max-width);
+}
+.hs-track{
+  position: absolute; inset: 0 auto 0 0;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 14px;
+  padding: 14px;
+  will-change: transform;
+  transform: translateX(0);
+}
+.hs-track .tile{
+  width: clamp(220px, 36vw, 420px);
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+  background: #f3f3f3;
+}
+
+/* progress-driven effects (JS toggles --p 0..1) */
+.pin-section{ --p: 0; }
+.pin-white .pin-wrap{
+  opacity: clamp(0, calc(var(--p) * 1.2), 1);
+  transform: translateY(calc((1 - var(--p)) * 40px));
+}
+/* --- SCROLL STAGES (fix layout + sizing) --- */
+.scroll-stage{position:relative;height:240vh;}      /* enough room to scroll */
+.scroll-pin{position:sticky;top:calc(var(--topbar-h,88px) + 12px);z-index:2}
+
+.scroll-card{
+  width:min(960px,92vw);
+  margin-inline:auto;
+  padding:clamp(20px,3vw,32px);
+  border-radius:16px;
+  background:#fff;
+  box-shadow:0 20px 40px rgba(0,0,0,.12);
+  transform: translateY(8vh) scale(.98);
+  transition: transform .3s ease, box-shadow .3s ease, opacity .3s ease;
+  opacity:.96;
+}
+
+.scroll-card h2{margin:0 0 .4rem; text-align:center}
+.scroll-card p{margin:.25rem 0 1rem; text-align:center}
+.scroll-card .btn{display:inline-block; margin:auto}
+
+/* Collage rail */
+.collage-wrap{
+  position:relative;
+  width:min(1200px,94vw);
+  height:360px;
+  margin: clamp(16px,3vw,28px) auto 0;
+  border-radius:16px;
+  background:#fff;
+  box-shadow:0 18px 40px rgba(0,0,0,.12);
+  overflow:hidden;
+}
+
+.collage-rail{
+  position:absolute; inset:0;
+  display:flex; gap:8px; padding:8px;
+  will-change: transform;
+}
+
+.collage-rail img{
+  width:260px; height:100%;
+  object-fit:cover; border-radius:12px; flex:0 0 auto;
+  filter: saturate(1.05) contrast(1.02);
+}
+
+/* subtle progress lift while scrolling */
+.stage-active .scroll-card{transform: translateY(0) scale(1); box-shadow:0 28px 60px rgba(0,0,0,.14); opacity:1}
+
+
+
+/* Offers Section Styles */
+.offers-section {
+    position: relative;
+    height: 200vh;
+    background: transparent;
+}
+
+.offers-section .scroll-pin {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.offers-section.stage-active .scroll-pin {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.offers-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    transform: scale(1.1);
+    opacity: 0;
+    transition: transform 1s ease, opacity 1s ease;
+}
+
+.offers-section.stage-active .offers-background {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.offers-content {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(400px, 1fr));
+    gap: 3rem;
+    width: min(1400px, 90%);
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s;
+}
+
+.offers-section.stage-active .offers-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.offer-card {
+    background: rgba(255, 255, 255, 0.322);
+    padding: 5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+/* Restaurant Section Styles */
+.restaurant-section {
+    padding: 4rem 0;
+    overflow: hidden;
+    background: #f5f5f5;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+    color: var(--ink);
+}
+
+.horizontal-scroll-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.scroll-content {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    animation: scrollHorizontally 30s linear infinite;
+}
+
+.restaurant-image {
+    flex: 0 0 auto;
+    width: 400px;
+    height: 300px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.restaurant-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.restaurant-image:hover img {
+    transform: scale(1.05);
+}
+
+@keyframes scrollHorizontally {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .offers-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .restaurant-image {
+        width: 300px;
+        height: 225px;
+    }
+}
+
+/* Scroll stage setup */
+.scroll-stage {
+    position: relative;
+    height: 200vh;
+}
+
+.scroll-pin {
+    position: sticky;
+    top: 20vh;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Offers grid styling */
+.offers-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(300px, 400px));
+    gap: 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-pin.stage-active .offers-grid {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.offer-item {
+    background: var(--tiamo-white, #fff);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.offer-item h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    font-family: "Noto Serif", serif;
+    color: var(--ink);
+}
+
+.offer-item p {
+    color: var(--ink-soft);
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .offers-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+}
+/* === HOME-ONLY wider container === */
+body.home .container,
+body.home .container.nav{
+  max-width: 1400px !important;
+}
+
+/* === Remove the huge scroll staging on this page === */
+body.home .scroll-stage{
+  height: auto !important;
+  min-height: 0 !important;
+  padding-block: clamp(40px, 6vh, 80px) !important;
+}
+body.home .scroll-pin{
+  position: static !important;   /* no sticky */
+  top: auto !important;
+  height: auto !important;
+}
+
+/* === Offers band: keep the black bg only around the cards === */
+body.home .offers-section{
+  background: #373c2f5b !important;       /* same look, but only as tall as content */
+  border-radius: 0;
+  padding-block: clamp(48px, 7vh, 96px) !important;
+}
+body.home .offers-background{ display:none !important; } /* not needed without pin */
+body.home .offers-content{
+  width: min(1400px, 92vw) !important;
+  margin-inline: auto !important;
+  grid-template-columns: repeat(2, minmax(280px, 1fr)) !important;
+  gap: clamp(20px, 3vw, 40px) !important;
+  opacity: 1 !important;             /* always visible (no pin fade) */
+  transform: none !important;
+}
+
+/* stack on phones */
+@media (max-width: 900px){
+  body.home .offers-content{ grid-template-columns: 1fr !important; }
+}
+
+/* === Restaurant section: tighter spacing & fixed track height === */
+body.home .restaurant-section{
+  background: #fff !important;
+  padding: clamp(40px, 6vh, 80px) 0 !important;
+}
+body.home .restaurant-section .section-title{
+  margin-bottom: clamp(16px, 3vh, 28px) !important;
+}
+body.home .horizontal-scroll-container{ overflow: hidden !important; }
+body.home .scroll-content{
+  padding: 1rem !important;
+  gap: clamp(16px, 2vw, 24px) !important;
+}
+body.home .restaurant-image{
+  width: clamp(260px, 28vw, 400px) !important;
+  height: clamp(180px, 28vh, 300px) !important;
+}
+
+/* === Make sure footer renders above any left-over layers === */
+.footer{ position: relative; z-index: 1; }
+/* fade in when scrolled into view */
+.scroll-stage { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+.scroll-stage.stage-active { opacity: 1; transform: none; }
+
+/* offers layout stays compact */
+.offers-section { background:#111; padding: clamp(40px,6vh,80px) 0; }
+.offers-content { width:min(1400px,92vw); margin:auto; display:grid; gap:clamp(20px,3vw,40px); grid-template-columns:repeat(2,minmax(280px,1fr)); }
+@media (max-width:900px){ .offers-content{ grid-template-columns:1fr; } }
+
+/* pdf preview box */
+.pdf-preview { position: relative; margin-top: 1rem; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 26px rgba(0,0,0,.18); background:#fff; }
+.pdf-preview object, .pdf-preview img { display:block; width:100%; height: clamp(360px, 56vh, 680px); object-fit: cover; }
+.pdf-dl-btn { position: absolute; right: 12px; bottom: 12px; }
