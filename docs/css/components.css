@@ -1263,7 +1263,7 @@ main {
 .main-nav a.nav-pill{
   /* Default-Werte, pro Link überschreibbar */
   --nav-ic-gap: 10px;      /* Abstand zwischen Pill-Oberkante und Icon */
-  --nav-ic-rot: 40deg;      /* Rotation des Icons */
+  --nav-ic-rot: 0deg;      /* Rotation des Icons */
 }
 
 .main-nav a.nav-pill::after{
@@ -1706,5 +1706,295 @@ body.home .restaurant-image{
 
 /* pdf preview box */
 .pdf-preview { position: relative; margin-top: 1rem; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 26px rgba(0,0,0,.18); background:#fff; }
-.pdf-preview object, .pdf-preview img { display:block; width:100%; height: clamp(360px, 56vh, 680px); object-fit: cover; }
+.pdf-preview object, .pdf-preview img { display:block; width:100%; height:auto; max-height: min(72vh, 820px); aspect-ratio: 3 / 4; object-fit: contain; background:#f7f7f2; }
 .pdf-dl-btn { position: absolute; right: 12px; bottom: 12px; }
+
+/* =========================================================
+   FINAL POLISH PASS (navbar + speisekarte rail + mobile)
+   ========================================================= */
+
+:root{
+  --topbar-h: clamp(74px, 8vw, 92px);
+  --nav-radius: 999px;
+}
+
+/* ----- Top navbar: cleaner + consistent ----- */
+.site-topbar{
+  position: sticky !important;
+  top: 0;
+  z-index: 4000 !important;
+  border-bottom: 1px solid rgba(255,255,255,.22);
+  box-shadow: 0 8px 22px rgba(0,0,0,.12);
+}
+
+.container.nav{
+  min-height: var(--topbar-h);
+  padding: .5rem 0 !important;
+  align-items: center;
+}
+
+.logo img{
+  height: clamp(52px, 6.6vw, 84px) !important;
+  width: auto;
+}
+
+.main-nav{
+  gap: .55rem !important;
+}
+
+.main-nav a.nav-pill{
+  min-height: 42px;
+  padding: .48rem .95rem !important;
+  border-radius: var(--nav-radius);
+  border: 1px solid rgba(255,255,255,.32);
+  background: rgba(255,255,255,.14) !important;
+  color: #fff !important;
+  font-weight: 700;
+  letter-spacing: .01em;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+}
+
+.main-nav a.nav-pill:hover,
+.main-nav a.nav-pill:focus-visible{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.26) !important;
+  box-shadow: 0 8px 18px rgba(0,0,0,.18);
+}
+
+.main-nav a.nav-pill[aria-current="page"]{
+  background: #fff !important;
+  color: var(--tiamo-red) !important;
+  border-color: rgba(255,255,255,.9);
+  box-shadow: 0 10px 22px rgba(0,0,0,.16);
+}
+
+/* Speisekarte page: top nav always centered and balanced */
+body:has(#sn-list) .container.nav{
+  grid-template-columns: auto 1fr auto;
+}
+
+body:has(#sn-list) .main-nav{
+  justify-self: center;
+  justify-content: center;
+}
+
+/* ----- Section icon rail (Speisekarte) ----- */
+.section-nav{
+  z-index: 2500 !important;
+}
+
+/* Desktop: elegant right rail */
+@media (min-width: 981px){
+  .section-nav{
+    position: fixed;
+    right: max(12px, calc((100vw - 1200px)/2 - 68px));
+    top: calc(var(--topbar-h) + 22px);
+    left: auto !important;
+    transform: none !important;
+  }
+
+  .sn-list{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: calc(100vh - var(--topbar-h) - 48px);
+    overflow: auto;
+    padding: 10px;
+    border-radius: 18px;
+    background: rgba(255,255,255,.72);
+    border: 1px solid rgba(0,0,0,.08);
+    box-shadow: 0 14px 30px rgba(0,0,0,.14);
+    backdrop-filter: blur(7px);
+  }
+
+  .sn-list a{
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    border: 1px solid rgba(0,0,0,.10);
+    background: #fff;
+  }
+}
+
+/* Mobile/tablet: bottom floating rail */
+@media (max-width: 980px){
+  .container.nav{
+    grid-template-columns: auto 1fr;
+    row-gap: .45rem;
+  }
+
+  .right-slot{ display:none; }
+
+  .main-nav{
+    justify-self: end;
+    width: 100%;
+    justify-content: flex-end;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 2px;
+  }
+  .main-nav::-webkit-scrollbar{ display:none; }
+
+  .main-nav a.nav-pill{
+    white-space: nowrap;
+    min-height: 38px;
+    padding: .38rem .78rem !important;
+    font-size: .94rem;
+  }
+
+  .section-nav{
+    position: fixed;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    top: auto !important;
+    bottom: max(10px, env(safe-area-inset-bottom));
+    width: min(94vw, 760px);
+  }
+
+  .sn-list{
+    flex-direction: row !important;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-height: none;
+    padding: 8px 10px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.88);
+    border: 1px solid rgba(0,0,0,.10);
+    box-shadow: 0 10px 26px rgba(0,0,0,.20);
+    scrollbar-width: none;
+  }
+  .sn-list::-webkit-scrollbar{ display:none; }
+
+  .sn-list a{
+    flex: 0 0 auto;
+    width: 44px;
+    height: 44px;
+    border-radius: 11px;
+    background:#fff;
+    border:1px solid rgba(0,0,0,.10);
+  }
+
+  .sn-list a.active{
+    background: #f3f7e4;
+    border-color: var(--tiamo-olive);
+    box-shadow: 0 0 0 3px rgba(107,125,43,.18);
+  }
+
+  /* avoid content hidden under floating rail */
+  body{ padding-bottom: 82px; }
+}
+
+/* ----- Small visual cleanup for cards/sections ----- */
+.offer-card,
+.menu-item{
+  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 10px 24px rgba(0,0,0,.07);
+}
+
+.hero-inner p{
+  background: rgba(0,0,0,.28);
+  padding: .5rem .8rem;
+  border-radius: 10px;
+}
+
+
+/* =========================================================
+   REQUESTED FIX PACK (Gafura) — navbar + menu rail + offers title
+   ========================================================= */
+
+/* 1) Main navbar: 3 items centered on every page */
+.container.nav{
+  grid-template-columns: auto 1fr auto !important;
+  align-items: center !important;
+}
+
+.main-nav{
+  justify-self: center !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: auto !important;
+  padding-top: .55rem !important; /* pull tabs a bit down */
+}
+
+.main-nav a.nav-pill{
+  min-width: 150px;
+  text-align: center;
+}
+
+/* 2) Hover icons: keep fully visible (not clipped at top) */
+.site-topbar{ overflow: visible !important; }
+.main-nav a.nav-pill{ overflow: visible !important; }
+
+.main-nav a.nav-pill::after{
+  bottom: calc(100% + 2px) !important; /* lower icon anchor */
+  transform: translate(-50%, 2px) rotate(var(--nav-ic-rot, 0deg)) scale(.95) !important;
+}
+
+.main-nav a.nav-pill:hover::after,
+.main-nav a.nav-pill:focus-visible::after{
+  transform: translate(-50%, -2px) rotate(var(--nav-ic-rot, 0deg)) scale(1) !important;
+  opacity: 1 !important;
+}
+
+/* 3) current page white highlight across all pages (already via aria-current) */
+.main-nav a.nav-pill[aria-current="page"]{
+  background: #fff !important;
+  color: var(--tiamo-red) !important;
+  border-color: rgba(255,255,255,.95) !important;
+}
+
+/* 4) Speisekarte icon rail: centered content */
+.section-nav{ display: flex; justify-content: center; }
+.sn-list{
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+/* 5) Home titles (Tageskarte/Wochenangebot) too big -> reduce */
+body.home .offer-card h2,
+body.home .playwrite-cuba-1{
+  font-size: clamp(1.45rem, 2.2vw, 2.1rem) !important;
+  line-height: 1.15;
+  padding: 0 !important;
+  margin: 0 0 .65rem !important;
+}
+
+/* Mobile polish */
+@media (max-width: 900px){
+  .container.nav{
+    grid-template-columns: 1fr !important;
+    justify-items: center;
+    row-gap: .35rem;
+    padding-top: .35rem !important;
+    padding-bottom: .45rem !important;
+  }
+
+  .logo{ justify-self: center !important; }
+  .right-slot{ display:none !important; }
+
+  .main-nav{
+    width: 100% !important;
+    justify-content: center !important;
+    gap: .45rem !important;
+    padding-top: .25rem !important;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .main-nav::-webkit-scrollbar{ display:none; }
+
+  .main-nav a.nav-pill{
+    min-width: 118px;
+    min-height: 38px;
+    padding: .36rem .65rem !important;
+    font-size: .95rem;
+  }
+
+  .main-nav a.nav-pill::after{ bottom: calc(100% + 1px) !important; }
+}
+
