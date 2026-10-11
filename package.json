@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "bun --hot src/server.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "build:static": "node restaurant-site/scripts/build-static.mjs"
   },
   "dependencies": {
     "express": "^5.2.1",
