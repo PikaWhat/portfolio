@@ -1,0 +1,6 @@
+﻿.ticker{display:block;padding:0;overflow:hidden}
+.ticker-track{display:flex;width:max-content;height:100%;will-change:transform;animation:ticker-loop 26s linear infinite}
+.ticker-group{display:flex;flex:0 0 auto;align-items:center;justify-content:space-around;gap:clamp(24px,4vw,60px);min-width:100vw;padding:0 4vw}
+.ticker-separator{opacity:.7}
+@keyframes ticker-loop{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.ticker-track{animation:none}}
