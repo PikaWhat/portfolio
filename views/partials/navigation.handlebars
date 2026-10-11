@@ -1,0 +1,9 @@
+<header class="site-header">
+  <a class="brand" href="/" aria-label="La Fetta – Startseite"><img class="brand-logo" src="/img/la-fetta-logo.png" alt="La Fetta"></a>
+  <nav class="main-nav" aria-label="Hauptnavigation">
+    <a href="/" {{#if isHome}}aria-current="page"{{/if}}>Startseite</a>
+    <a href="/speisekarte" {{#if isMenu}}aria-current="page"{{/if}}>Speisekarte</a>
+    <a href="/anfahrt" {{#if isVisit}}aria-current="page"{{/if}}>Anfahrt</a>
+  </nav>
+  <a class="header-cta" href="/anfahrt">Tisch anfragen <span aria-hidden="true">↗</span></a>
+</header>
